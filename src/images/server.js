@@ -46,8 +46,8 @@ app.get("/api/images", (req, res) => res.json(images));
 //Get orders by ID
 app.post('/api/generate', function requestHandler(req, res) {
   const body = req.body;
-  if(body.prompt && body.prompt != ""){
-    generateImage(body.prompt).then((response) => {
+  if(body.animal && body.animal != ""){
+    generateImage(body.animal).then((response) => {
       res.json(response);
     })
   }
