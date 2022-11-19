@@ -26,13 +26,12 @@ async function generateImage(prompt){
     })
   });
   const data = await response.json();
-  // const response = await openai.createImage({
-  //   prompt: "A cute baby sea otter",
-  //   n: 2,
-  //   size: "1024x1024",
-  // });
+  console.log(data);
   return data;
 }
+
+
+// generateImage("cat");
 
 
 //Load images for pseudo database
@@ -47,13 +46,13 @@ app.get("/api/images", (req, res) => res.json(images));
 //Get orders by ID
 app.post('/api/generate', function requestHandler(req, res) {
   const body = req.body;
-  if(body.animal && body.animal != ""){
-    generateImage(body.animal).then((response) => {
+  if(body.prompt && body.prompt != ""){
+    generateImage(body.prompt).then((response) => {
       res.json(response);
     })
   }
 });
 
 app.listen(port, () =>
-  console.log(`Orders microservice listening on port ${port}!`)
+  console.log(`Images microservice listening on port ${port}!`)
 );
